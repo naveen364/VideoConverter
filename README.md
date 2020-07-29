@@ -1,6 +1,6 @@
 [![GitHub license](https://img.shields.io/github/license/naveen364/VideoConverter)](https://github.com/naveen364/VideoConverter/blob/master/LICENSE)
 
-https://img.shields.io/badge/AndroidSDK-4.0-orange
+<a href="https://img.shields.io/badge/AndroidSDK-4.0-orange"></a>
 
 # VideoConverter
 Video file conversion library based on <a href="https://android.googlesource.com/platform/cts/+/jb-mr2-release/tests/tests/media/src/android/media/cts/ExtractDecodeEditEncodeMuxTest.java">ExtractDecodeEditEncodeMuxTest.java</a> CTS test
