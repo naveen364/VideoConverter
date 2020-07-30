@@ -10,15 +10,22 @@
         android:layout_above="@+id/imageView1"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="36dp"
+        android:layout_marginTop="100dp"
         android:background="@drawable/ic_video_camera" />
 
     <ImageView
         android:id="@+id/imageView1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
         android:layout_centerInParent="true"
-        android:layout_centerHorizontal="true"
         android:background="@drawable/src_anim" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_marginTop="235dp"
+        android:layout_height="100dp"
+        android:background="@drawable/semi_circle"
+        android:layout_below="@+id/imageView1"/>
 
 </RelativeLayout>
