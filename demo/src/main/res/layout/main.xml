@@ -69,11 +69,11 @@
                     android:layout_gravity="center"
                     app:rsb_minThumbDrawable="@drawable/seeks"
                     app:rsb_maxThumbDrawable="@drawable/seeks"
-                    app:rsb_minThumbOffsetHorizontal="-1.3dp"
-                    app:rsb_maxThumbOffsetHorizontal="1.3dp"
+                    app:rsb_minThumbOffsetHorizontal="-13.3dp"
+                    app:rsb_maxThumbOffsetHorizontal="14.3dp"
                     app:rsb_trackSelectedColor="@color/accent"
                     app:rsb_trackThickness="4dp"
-                    app:rsb_trackSelectedThickness="4dp"
+                    app:rsb_trackSelectedThickness="10dp"
                     app:rsb_sidePadding="20dp"/>
 
                 <ProgressBar
@@ -110,13 +110,15 @@
                         android:layout_height="wrap_content"
                         android:text="@string/input_video"
                         android:textColor="@android:color/white"
-                        android:textSize="16sp" />
+                        android:textSize="16sp"
+                        android:paddingLeft="20dp"/>
 
                     <TextView
                         android:id="@+id/input_info"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:textSize="16sp" />
+                        android:paddingLeft="20dp"
+                        android:textSize="16sp"/>
                 </LinearLayout>
 
                 <ImageView
@@ -158,12 +160,14 @@
                         android:layout_height="wrap_content"
                         android:text="@string/output_video"
                         android:textColor="@android:color/white"
-                        android:textSize="16sp" />
+                        android:textSize="16sp"
+                        android:paddingLeft="20dp"/>
 
                     <TextView
                         android:id="@+id/output_info"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:paddingLeft="20dp"
                         android:textSize="16sp" />
                 </LinearLayout>
 
@@ -196,15 +200,15 @@
                     android:layout_width="48dp"
                     android:layout_height="48dp"
                     android:scaleType="center"
-                    android:src="@drawable/ic_settings" />
+                    android:src="@drawable/ic_round_arrow" />
             </LinearLayout>
 
             <Button
                 android:id="@+id/convert"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="4dp"
-                android:layout_marginRight="4dp"
+                android:layout_marginLeft="100dp"
+                android:layout_marginRight="100dp"
                 android:layout_marginTop="14dp"
                 android:minHeight="54dp"
                 android:text="@string/convert"

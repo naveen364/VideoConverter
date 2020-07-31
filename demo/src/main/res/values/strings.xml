@@ -30,4 +30,7 @@
     <string name="mkv">mkv</string>
     <string name="avi">avi</string>
     <string name="three_gp">3gp</string>
+    <string name="selectvideo">Please Select Video</string>
+    <string name="notvideo">Not a Video</string>
+    <string name="failedtoconvert">Failed to Convert</string>
 </resources>

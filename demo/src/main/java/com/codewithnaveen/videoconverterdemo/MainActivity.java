@@ -46,6 +46,8 @@ import java.util.Date;
 import java.util.Locale;
 import java.util.concurrent.atomic.AtomicBoolean;
 
+import es.dmoral.toasty.Toasty;
+
 public class MainActivity extends AppCompatActivity {
 
     private static final String TAG = "video-converter";
@@ -155,9 +157,9 @@ public class MainActivity extends AppCompatActivity {
                 intent.setFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
                 startActivity(intent);
             } else if (mConversionTask == null) {
-                Toast.makeText(getBaseContext(), R.string.please_select_video, Toast.LENGTH_SHORT).show();
+                Toasty.custom(MainActivity.this, R.string.select_video, getResources().getDrawable(R.drawable.ic_info),android.R.color.black, android.R.color.holo_orange_dark, Toasty.LENGTH_SHORT, true, true).show();
             } else {
-                Toast.makeText(getBaseContext(), R.string.conversion_in_progress, Toast.LENGTH_SHORT).show();
+                Toasty.custom(MainActivity.this, R.string.conversion_in_progress, getResources().getDrawable(R.drawable.ic_info),android.R.color.black, android.R.color.holo_orange_dark, Toasty.LENGTH_SHORT, true, true).show();
             }
         });
 
@@ -170,9 +172,9 @@ public class MainActivity extends AppCompatActivity {
                 intent.setFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
                 startActivity(intent);
             } else if (mConversionTask == null) {
-                Toast.makeText(getBaseContext(), R.string.please_select_video, Toast.LENGTH_SHORT).show();
+                Toasty.custom(MainActivity.this, R.string.selectvideo, getResources().getDrawable(R.drawable.ic_info),android.R.color.black, android.R.color.holo_orange_dark, Toasty.LENGTH_SHORT, true, true).show();
             } else {
-                Toast.makeText(getBaseContext(), R.string.conversion_in_progress, Toast.LENGTH_SHORT).show();
+                Toasty.custom(MainActivity.this, R.string.conversion_in_progress, getResources().getDrawable(R.drawable.ic_info),android.R.color.black, android.R.color.holo_orange_dark, Toasty.LENGTH_SHORT, true, true).show();
             }
         });
 
@@ -181,7 +183,7 @@ public class MainActivity extends AppCompatActivity {
             if (mConversionTask == null) {
                 onOutputOptions();
             } else {
-                Toast.makeText(getBaseContext(), R.string.conversion_in_progress, Toast.LENGTH_SHORT).show();
+                Toasty.custom(MainActivity.this, R.string.conversion_in_progress, getResources().getDrawable(R.drawable.ic_info),android.R.color.black, android.R.color.holo_orange_dark, Toasty.LENGTH_SHORT, true, true).show();
             }
         });
 
@@ -190,7 +192,7 @@ public class MainActivity extends AppCompatActivity {
             if (mConversionTask == null) {
                 onOutputConvertOptions();
             } else {
-                Toast.makeText(getBaseContext(), R.string.conversion_in_progress, Toast.LENGTH_SHORT).show();
+                Toasty.custom(MainActivity.this, R.string.conversion_in_progress, getResources().getDrawable(R.drawable.ic_info),android.R.color.black, android.R.color.holo_orange_dark, Toasty.LENGTH_SHORT, true, true).show();
             }
         });
 
@@ -246,7 +248,7 @@ public class MainActivity extends AppCompatActivity {
             case ACTIVITY_REQUEST_CODE_PICK_VIDEO: {
                 if (result == Activity.RESULT_OK) {
                     if (data == null) {
-                        Toast.makeText(getBaseContext(), R.string.bad_video, Toast.LENGTH_SHORT).show();
+
                         if (mInputFile == null) {
                             pickVideo();
                         }
@@ -260,7 +262,7 @@ public class MainActivity extends AppCompatActivity {
                         if (uri != null) {
                             loadUri(uri);
                         } else {
-                            Toast.makeText(getBaseContext(), R.string.bad_video, Toast.LENGTH_SHORT).show();
+                            Toasty.custom(MainActivity.this, R.string.notvideo, getResources().getDrawable(R.drawable.ic_info),android.R.color.black, android.R.color.holo_orange_dark, Toasty.LENGTH_SHORT, true, true).show();
                             if (mInputFile == null) {
                                 pickVideo();
                             }
@@ -365,7 +367,7 @@ public class MainActivity extends AppCompatActivity {
         try {
             mediaMetadataRetriever.setDataSource(mInputFile.getAbsolutePath());
         } catch (Exception ex) {
-            Toast.makeText(getBaseContext(), R.string.bad_video, Toast.LENGTH_SHORT).show();
+            Toasty.custom(MainActivity.this, R.string.notvideo, getResources().getDrawable(R.drawable.ic_info),android.R.color.black, android.R.color.holo_orange_dark, Toasty.LENGTH_SHORT, true, true).show();
             mediaMetadataRetriever.release();
             mInputFile = null;
             updateButtons();
@@ -383,7 +385,7 @@ public class MainActivity extends AppCompatActivity {
             mWidth = Integer.parseInt(width);
             mHeight = Integer.parseInt(height);
         } catch (NumberFormatException e) {
-            Toast.makeText(getBaseContext(), R.string.bad_video, Toast.LENGTH_SHORT).show();
+            Toasty.custom(MainActivity.this, R.string.notvideo, getResources().getDrawable(R.drawable.ic_info),android.R.color.black, android.R.color.holo_orange_dark, Toasty.LENGTH_SHORT, true, true).show();
             mediaMetadataRetriever.release();
             mInputFile = null;
             updateButtons();
@@ -482,7 +484,7 @@ public class MainActivity extends AppCompatActivity {
     private void pickVideo() {
 
         if (mConversionTask != null) {
-            Toast.makeText(getBaseContext(), R.string.conversion_in_progress, Toast.LENGTH_SHORT).show();
+            Toasty.custom(MainActivity.this, R.string.conversion_in_progress, getResources().getDrawable(R.drawable.ic_info),android.R.color.black, android.R.color.holo_orange_dark, Toasty.LENGTH_SHORT, true, true).show();
             return;
         }
 
@@ -542,7 +544,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void convert() {
         if (mConversionTask != null) {
-            Toast.makeText(getBaseContext(), R.string.conversion_in_progress, Toast.LENGTH_SHORT).show();
+            Toasty.custom(MainActivity.this, R.string.conversion_in_progress, getResources().getDrawable(R.drawable.ic_info),android.R.color.black, android.R.color.holo_orange_dark, Toasty.LENGTH_SHORT, true, true).show();
             return;
         }
         long timeFrom = mRangeSeekBar.getMinThumbValue();
@@ -555,7 +557,7 @@ public class MainActivity extends AppCompatActivity {
             mConversionTask.execute();
         } catch (FileNotFoundException e) {
             mConversionTask = null;
-            Toast.makeText(getBaseContext(), R.string.conversion_failed, Toast.LENGTH_LONG).show();
+            Toasty.custom(MainActivity.this, R.string.failedtoconvert, getResources().getDrawable(R.drawable.ic_info),android.R.color.black, android.R.color.holo_orange_dark, Toasty.LENGTH_SHORT, true, true).show();
         }
     }
 
@@ -629,7 +631,7 @@ public class MainActivity extends AppCompatActivity {
                 updateButtons();
                 initInputData();
             } else {
-                Toast.makeText(getBaseContext(), R.string.bad_video, Toast.LENGTH_SHORT).show();
+                Toasty.custom(MainActivity.this, R.string.notvideo, getResources().getDrawable(R.drawable.ic_info),android.R.color.black, android.R.color.holo_orange_dark, Toasty.LENGTH_SHORT, true, true).show();
                 pickVideo();
             }
         }
@@ -723,7 +725,7 @@ public class MainActivity extends AppCompatActivity {
                         Formatter.formatShortFileSize(MainActivity.this, mOutputFile.length())));
 
             } else {
-                Toast.makeText(getBaseContext(), R.string.conversion_failed, Toast.LENGTH_LONG).show();
+                Toasty.custom(MainActivity.this, R.string.failedtoconvert, getResources().getDrawable(R.drawable.ic_info),android.R.color.black, android.R.color.holo_orange_dark, Toasty.LENGTH_SHORT, true, true).show();
             }
             updateButtons();
             mTimeView.setText(getString(R.string.seconds_elapsed, (System.currentTimeMillis() - mStartTime) / 1000));

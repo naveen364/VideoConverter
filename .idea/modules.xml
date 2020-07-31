@@ -2,6 +2,9 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/VideoConverter.iml" filepath="$PROJECT_DIR$/.idea/modules/VideoConverter.iml" group="VideoConverter" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/demo/VideoConverter-demo.iml" filepath="$PROJECT_DIR$/.idea/modules/demo/VideoConverter-demo.iml" group="VideoConverter/demo" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/library/VideoConverter-library.iml" filepath="$PROJECT_DIR$/.idea/modules/library/VideoConverter-library.iml" group="VideoConverter/library" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/VideoConverter-master.iml" filepath="$PROJECT_DIR$/.idea/modules/VideoConverter-master.iml" group="VideoConverter-master" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/demo/demo.iml" filepath="$PROJECT_DIR$/.idea/modules/demo/demo.iml" group="VideoConverter-master/demo" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/library/library.iml" filepath="$PROJECT_DIR$/.idea/modules/library/library.iml" group="VideoConverter-master/library" />
