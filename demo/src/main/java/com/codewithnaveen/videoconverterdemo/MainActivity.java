@@ -78,7 +78,7 @@ public class MainActivity extends AppCompatActivity {
 
     private File mOutputFolder;
 
-    private File mInputFile; // = new File("/storage/emulated/0/Android/data/com.codewithnaveen.videoconverter/files/Temp/tmp.mp4");
+    private File mInputFile = new File("/storage/emulated/0/Android/data/com.codewithnaveen.videoconverter/files/Temp/tmp.mp4");
     private File mOutputFile;
 
     private int mWidth;
@@ -193,6 +193,10 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(getBaseContext(), R.string.conversion_in_progress, Toast.LENGTH_SHORT).show();
             }
         });
+
+        if(!mInputFile.exists()){
+            mInputFile = null;
+        }
 
         if (savedInstanceState != null) {
             final String inputPath = savedInstanceState.getString("input");
