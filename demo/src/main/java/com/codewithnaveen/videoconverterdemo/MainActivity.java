@@ -8,7 +8,10 @@ import android.graphics.Bitmap;
 import android.media.MediaMetadataRetriever;
 import android.net.Uri;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Bundle;
+import android.os.Environment;
+import android.os.FileUtils;
 import android.os.PowerManager;
 import android.os.PowerManager.WakeLock;
 import android.provider.MediaStore;
@@ -26,6 +29,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.PopupMenu;
 import androidx.core.content.FileProvider;
@@ -36,6 +40,7 @@ import com.codewithnaveen.videoconverter.MediaConverter;
 import com.innovattic.rangeseekbar.RangeSeekBar;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -47,6 +52,10 @@ import java.util.Locale;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 import es.dmoral.toasty.Toasty;
+
+import static android.os.Environment.DIRECTORY_DOWNLOADS;
+import static es.dmoral.toasty.Toasty.LENGTH_SHORT;
+
 
 public class MainActivity extends AppCompatActivity {
 
@@ -125,6 +134,7 @@ public class MainActivity extends AppCompatActivity {
         mConversionProgressBar.setMax(100);
         mConvertButton = findViewById(R.id.convert);
         mConvertButton.setOnClickListener(v -> {
+
             if (mConverted) {
                 final Intent intent = new Intent(Intent.ACTION_VIEW);
                 intent.setDataAndType(FileProvider.getUriForFile(getBaseContext(), FILE_PROVIDER_AUTHORITY, mOutputFile), "video/*");
@@ -148,7 +158,6 @@ public class MainActivity extends AppCompatActivity {
             intent.setFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
             startActivity(intent);
         });
-
         mOutputPlayButton = this.findViewById(R.id.output_play);
         mOutputPlayButton.setOnClickListener(v -> {
             if (mConverted) {
@@ -172,7 +181,7 @@ public class MainActivity extends AppCompatActivity {
                 intent.setFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
                 startActivity(intent);
             } else if (mConversionTask == null) {
-                Toasty.custom(MainActivity.this, R.string.selectvideo, getResources().getDrawable(R.drawable.ic_info),android.R.color.black, android.R.color.holo_orange_dark, Toasty.LENGTH_SHORT, true, true).show();
+                Toasty.custom(MainActivity.this, R.string.select_video, getResources().getDrawable(R.drawable.ic_info),android.R.color.black, android.R.color.holo_orange_dark, Toasty.LENGTH_SHORT, true, true).show();
             } else {
                 Toasty.custom(MainActivity.this, R.string.conversion_in_progress, getResources().getDrawable(R.drawable.ic_info),android.R.color.black, android.R.color.holo_orange_dark, Toasty.LENGTH_SHORT, true, true).show();
             }
@@ -223,6 +232,7 @@ public class MainActivity extends AppCompatActivity {
         updateButtons();
     }
 
+
     @Override
     protected void onSaveInstanceState(final @NonNull Bundle outState) {
         super.onSaveInstanceState(outState);
@@ -262,7 +272,7 @@ public class MainActivity extends AppCompatActivity {
                         if (uri != null) {
                             loadUri(uri);
                         } else {
-                            Toasty.custom(MainActivity.this, R.string.notvideo, getResources().getDrawable(R.drawable.ic_info),android.R.color.black, android.R.color.holo_orange_dark, Toasty.LENGTH_SHORT, true, true).show();
+                            Toasty.custom(MainActivity.this, R.string.bad_video, getResources().getDrawable(R.drawable.ic_info),android.R.color.black, android.R.color.holo_orange_dark, Toasty.LENGTH_SHORT, true, true).show();
                             if (mInputFile == null) {
                                 pickVideo();
                             }
@@ -367,7 +377,7 @@ public class MainActivity extends AppCompatActivity {
         try {
             mediaMetadataRetriever.setDataSource(mInputFile.getAbsolutePath());
         } catch (Exception ex) {
-            Toasty.custom(MainActivity.this, R.string.notvideo, getResources().getDrawable(R.drawable.ic_info),android.R.color.black, android.R.color.holo_orange_dark, Toasty.LENGTH_SHORT, true, true).show();
+            Toasty.custom(MainActivity.this, R.string.bad_video, getResources().getDrawable(R.drawable.ic_info),android.R.color.black, android.R.color.holo_orange_dark, Toasty.LENGTH_SHORT, true, true).show();
             mediaMetadataRetriever.release();
             mInputFile = null;
             updateButtons();
@@ -385,8 +395,8 @@ public class MainActivity extends AppCompatActivity {
             mWidth = Integer.parseInt(width);
             mHeight = Integer.parseInt(height);
         } catch (NumberFormatException e) {
-            Toasty.custom(MainActivity.this, R.string.notvideo, getResources().getDrawable(R.drawable.ic_info),android.R.color.black, android.R.color.holo_orange_dark, Toasty.LENGTH_SHORT, true, true).show();
-            mediaMetadataRetriever.release();
+            Toasty.custom(MainActivity.this, R.string.bad_video, getResources().getDrawable(R.drawable.ic_info),android.R.color.black, android.R.color.holo_orange_dark, Toasty.LENGTH_SHORT, true, true).show();
+             mediaMetadataRetriever.release();
             mInputFile = null;
             updateButtons();
             pickVideo();
@@ -631,7 +641,7 @@ public class MainActivity extends AppCompatActivity {
                 updateButtons();
                 initInputData();
             } else {
-                Toasty.custom(MainActivity.this, R.string.notvideo, getResources().getDrawable(R.drawable.ic_info),android.R.color.black, android.R.color.holo_orange_dark, Toasty.LENGTH_SHORT, true, true).show();
+                Toasty.custom(MainActivity.this, R.string.select_video, getResources().getDrawable(R.drawable.ic_info),android.R.color.black, android.R.color.holo_orange_dark, Toasty.LENGTH_SHORT, true, true).show();
                 pickVideo();
             }
         }
