@@ -22,10 +22,12 @@
         android:background="@drawable/src_anim" />
 
     <LinearLayout
+        android:id="@+id/cover"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@+id/imageView1"
         android:layout_marginTop="100dp"
-        android:background="@drawable/semi_circle" />
+        android:background="@drawable/semi_circle"
+        android:orientation="horizontal" />
 
 </RelativeLayout>

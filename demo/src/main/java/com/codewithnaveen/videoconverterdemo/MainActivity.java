@@ -8,10 +8,8 @@ import android.graphics.Bitmap;
 import android.media.MediaMetadataRetriever;
 import android.net.Uri;
 import android.os.AsyncTask;
-import android.os.Build;
+
 import android.os.Bundle;
-import android.os.Environment;
-import android.os.FileUtils;
 import android.os.PowerManager;
 import android.os.PowerManager.WakeLock;
 import android.provider.MediaStore;
@@ -37,10 +35,14 @@ import androidx.core.content.FileProvider;
 import com.codewithnaveen.videoconverter.BadMediaException;
 import com.codewithnaveen.videoconverter.MediaConversionException;
 import com.codewithnaveen.videoconverter.MediaConverter;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdSize;
+import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.MobileAds;
+
 import com.innovattic.rangeseekbar.RangeSeekBar;
 
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -108,10 +110,13 @@ public class MainActivity extends AppCompatActivity {
     private static final ConversionParameters CONV_PARAMS_1080P = new ConversionParameters(1080, MediaConverter.VIDEO_CODEC_H264, 6000000, 192000);
     private static final ConversionParameters CONV_PARAMS_1080P_H265 = new ConversionParameters(720, MediaConverter.VIDEO_CODEC_H265,  3000000, 192000);
     private static final ConversionParameters CONV_PARAMS_1440P_H265 = new ConversionParameters(1440, MediaConverter.VIDEO_CODEC_H265,  10000000, 512000);
+    private AdView mAdView;
 
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+
 
         mOutputFolder = getExternalFilesDir(null);
         if (mOutputFolder == null || !mOutputFolder.mkdirs()) {
@@ -120,6 +125,13 @@ public class MainActivity extends AppCompatActivity {
 
         setContentView(R.layout.main);
 
+        MobileAds.initialize(this,"ca-app-pub-4460913200000871~8479034985");
+        AdView adView = new AdView(this);
+        adView.setAdSize(AdSize.BANNER);
+        adView.setAdUnitId("ca-app-pub-4460913200000871/8742866660");
+        mAdView = findViewById(R.id.adView);
+        AdRequest adRequest = new AdRequest.Builder().build();
+        mAdView.loadAd(adRequest);
         mMainLayout = findViewById(R.id.main);
         mLoadingProgressBar = findViewById(R.id.loading_progress_bar);
         mInputInfoView = findViewById(R.id.input_info);

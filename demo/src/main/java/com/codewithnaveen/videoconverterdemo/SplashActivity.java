@@ -7,12 +7,13 @@ import android.os.Handler;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 
 
 public class SplashActivity extends Activity  {
     private static boolean splashLoaded = false;
     Animation logo_move;
-    ImageView imageView;
+    LinearLayout linearLayout;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,12 +34,12 @@ public class SplashActivity extends Activity  {
             Intent goToMainActivity = new Intent(SplashActivity.this, MainActivity.class);
             goToMainActivity.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
             startActivity(goToMainActivity);
+
             finish();
         }
 
-        imageView = (ImageView) findViewById(R.id.imageView1);
+        linearLayout = findViewById(R.id.cover);
         logo_move = AnimationUtils.loadAnimation(this,R.anim.logo_move);
-
-        imageView.setAnimation(logo_move);
+        linearLayout.setAnimation(logo_move);
     }
 }

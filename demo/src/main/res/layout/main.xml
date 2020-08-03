@@ -52,7 +52,8 @@
             android:paddingBottom="16dp"
             android:paddingLeft="8dp"
             android:paddingRight="8dp"
-            android:paddingTop="4dp" >
+            android:paddingTop="4dp"
+            android:layout_marginBottom="10dp">
 
             <com.codewithnaveen.videoconverterdemo.VideoThumbnailsView
                 android:id="@+id/video_thumbnails"
@@ -227,7 +228,8 @@
                 android:paddingLeft="12dp"
                 android:paddingTop="4dp"
                 android:textColor="#aaaaaa"
-                android:textSize="12sp" />
+                android:textSize="12sp"
+                android:layout_marginBottom="35dp"/>
         </LinearLayout>
     </com.codewithnaveen.videoconverterdemo.MainLayout>
 
@@ -237,5 +239,18 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:visibility="gone"/>
+
+    <com.google.android.gms.ads.AdView
+        xmlns:ads="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/adView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true"
+        ads:adSize="BANNER"
+        android:layout_marginLeft="45dp"
+        ads:adUnitId="ca-app-pub-4460913200000871/8742866660"
+        android:layout_gravity="bottom">
+    </com.google.android.gms.ads.AdView>
 
 </FrameLayout>
